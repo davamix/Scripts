@@ -5,3 +5,15 @@
 ```
 sh cpp-template.sh ProjectName
 ```
+Structure folder created:
+```
+ProjectName/
+    src/
+        CMakeLists.txt
+    tests/
+        CMakeLists.txt
+        CMakeLists.txt.in
+    build/
+    CMakeLists.txt
+    .gitignore
+```
