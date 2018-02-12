@@ -15,6 +15,12 @@ mkdir -p $project_name/src
 mkdir -p $project_name/tests
 mkdir -p $project_name/build
 
+# Add README.md file
+touch $project_name/README.md
+cat > $project_name/README.md << EOF
+# $project_name
+EOF
+
 # Add .gitignore file
 touch $project_name/.gitignore
 
