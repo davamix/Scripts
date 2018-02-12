@@ -11,24 +11,27 @@ project_name=$1
 
 # Create main folder with project name and tests/ src/ subdirectories
 #mkdir -p $project_name/{src,tests}
+echo "--> Creating folder structure..."
 mkdir -p $project_name/src
 mkdir -p $project_name/tests
 mkdir -p $project_name/build
 
 # Add README.md file
+echo "--> Adding README.md file..."
 touch $project_name/README.md
 cat > $project_name/README.md << EOF
 # $project_name
 EOF
 
 # Add .gitignore file
+echo "--> Adding .gitignore file..."
 touch $project_name/.gitignore
-
 cat > $project_name/.gitignore << EOF
 build/
 .vscode/
 EOF
 
+echo "--> Creating CMakeLists files..."
 # Create main CMakeLists file
 touch $project_name/CMakeLists.txt
 cat > $project_name/CMakeLists.txt << EOF
@@ -117,3 +120,33 @@ set_target_properties(libproject PROPERTIES LINKER_LANGUAGE CXX)
 
 target_include_directories(libproject PUBLIC \${CMAKE_CURRENT_SOURCE_DIR})
 EOF
+
+# Create a test file
+echo "--> Creating test file..."
+touch $project_name/tests/${project_name}-test.cpp
+cat > $project_name/tests/${project_name}-test.cpp << EOF
+#include <iostream>
+#include "gtest/gtest.h"
+
+// your project includes
+
+namespace{
+    class $project_name : public::testing::Test{
+
+    };
+
+    TEST($project_name, Test_number_one){
+        EXPECT_EQ(1, 1);
+    }
+}
+    
+EOF
+
+echo "\nProcess completed. \nPlease, check the CMakeLists files and change the project name also the 'libproject' and 'project-test' values if you wish."
+
+echo "\nTo build the project follow the steps below:"
+echo "  1. cd $project_name/build"
+echo "  2. cmake .."
+echo "  3. make"
+echo "  4. make test (alternatively you can execute the 'project-test' binary file in the $project_name/build/tests folder)"
+
