@@ -11,6 +11,7 @@ ProjectName/
     src/
         CMakeLists.txt
     tests/
+        ProjectName-test.cpp
         CMakeLists.txt
         CMakeLists.txt.in
     build/
