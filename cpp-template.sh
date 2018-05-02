@@ -86,7 +86,7 @@ add_subdirectory(\${CMAKE_CURRENT_BINARY_DIR}/googletest-src
 
 add_executable(project-test $project_name-test.cpp)
 
-target_link_libraries(project-test libproject gtest_main)
+target_link_libraries(project-test libproject gtest_main gmock_main)
 
 add_test(NAME $project_name COMMAND project-test)
 EOF
@@ -127,6 +127,7 @@ touch $project_name/tests/${project_name}-test.cpp
 cat > $project_name/tests/${project_name}-test.cpp << EOF
 #include <iostream>
 #include "gtest/gtest.h"
+#include "gmock/gmock.h"
 
 // your project includes
 
