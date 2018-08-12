@@ -84,7 +84,7 @@ add_subdirectory(\${CMAKE_CURRENT_BINARY_DIR}/googletest-src
                 \${CMAKE_CURRENT_BINARY_DIR}/googletest-build
                 EXCLUDE_FROM_ALL)
     
-add_executable(project-test test-file.cpp)
+add_executable(project-test ${project_name}-test.cpp)
 
 target_link_libraries(project-test libproject gtest_main)
 
