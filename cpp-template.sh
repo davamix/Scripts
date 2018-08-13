@@ -88,7 +88,7 @@ add_executable(project-test ${project_name}-test.cpp)
 
 target_link_libraries(project-test libproject gtest_main)
 
-add_test(NAME $project_name COMMAND project-test)
+add_test(NAME ${project_name}Test COMMAND project-test)
 EOF
 
 touch $project_name/tests/CMakeLists.txt.in
@@ -131,11 +131,11 @@ cat > $project_name/tests/${project_name}-test.cpp << EOF
 // your project includes
 
 namespace{
-    class $project_name : public::testing::Test{
+    class ${project_name}Test : public::testing::Test{
 
     };
 
-    TEST($project_name, Test_number_one){
+    TEST(${project_name}Test, Test_number_one){
         EXPECT_EQ(1, 1);
     }
 }
