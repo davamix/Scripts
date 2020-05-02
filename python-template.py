@@ -76,3 +76,6 @@ if(args.docker):
 
 
 print(f"Structure for {args.name} created!")
+
+if(args.docker):
+    print("Remember to change the base image in Dockerfile!")
