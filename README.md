@@ -24,7 +24,7 @@ ProjectName/
 ```
 python-template.py [-h] [--docker] name
 ```
-
+Structure folder created:
 ```
 name/
     app/
