@@ -18,3 +18,21 @@ ProjectName/
     CMakeLists.txt
     .gitignore
 ```
+
+* [python-template.py](https://github.com/davamix/Scripts/blob/master/python-template.py): script to create a folder structure for a Python project
+
+```
+python-template.py [-h] [--docker] name
+```
+
+```
+name/
+    app/
+        src/
+            __init__.py
+            main.py
+        Dockerfile
+        requirements.txt
+    .gitignore
+    docker-compose.yaml
+```
