@@ -73,8 +73,8 @@ def save_images(images, img_base_name, output_path):
 
         img.save(Path(output_path, img_name), format="JPEG")
 
-def process_file(element, is_group):
-    img_base_name = os.path.splitext(element[1])[0].split(pathlib.os.sep)[-1]
+def process_file(file, is_group):
+    img_base_name = os.path.splitext(file)[0].split(pathlib.os.sep)[-1]
 
     if is_group:
         # Create the output folder with the pdf name
@@ -84,13 +84,13 @@ def process_file(element, is_group):
         destination_path = base_output_path
     
     try:
-        print(f"# [{element[0]+1}/{len(pdf_list)}] Converting {element[1]}...")
-        images = convert_from_path(element[1])
+        print(f"# Converting {file}...")
+        images = convert_from_path(file)
         
         save_images(images, img_base_name, destination_path)
-        print(f"# [saved] {element[1]} => {destination_path}")
+        return {"status": "ok", "message": f"[saved] {file} => {destination_path}"}
     except:
-        print(f"\n# ERROR when processing {element[1]}")
+        return {"status": "error", "message": f"ERROR when processing {file}"}
 
 parser = argparse.ArgumentParser(description="Convert pdf files from source location to JPEG images")
 parser.add_argument("source", help="Folder that contains the pdf files")
@@ -102,8 +102,15 @@ base_output_path = create_folder_structure(Path(Path.cwd(), "output"))
 
 if Path(args.source).exists():
     pdf_list = get_pdf_files(args.source)
+    counter = 1
 
     with Pool(processes=8) as pool:
-        pool.map(partial(process_file, is_group=args.group), enumerate(pdf_list))
+        for msg in pool.imap_unordered(partial(process_file, is_group=args.group), pdf_list):
+            if msg["status"] == "ok":
+                print(f"# [{counter}/{len(pdf_list)}] {msg['message']}")
+            else:
+                print(f"{msg['message']}")
+
+            counter += 1
         
 print("\n# Conversion finished!")
