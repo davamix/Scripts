@@ -60,3 +60,9 @@ By default all images are saved into the `output` folder.
 With the `[--group | -g]` option the script will create a folder per pdf into the `output` folder and save the images in there.
 
 ___
+
+* [split-data.py](https://github.com/davamix/Scripts/blob/master/split-data.py): This script split the data from a source folder into a training set and validation set.
+
+```
+split-data.py [-h] [--validation VALIDATION] source train
+```
