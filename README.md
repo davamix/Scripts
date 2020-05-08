@@ -50,7 +50,7 @@ More info about how to build the query [https://export.arxiv.org/help/api/user-m
 
 ___
 
-* [pdf-image.py](https://github.com/davamix/Scripts/blob/master/pdf-image.py): This script converts all pdf from the source folder into images
+* [pdf-image.py](https://github.com/davamix/Scripts/blob/master/pdf-image.py): This script converts all the pdf's from the source folder into images using [pdf2image](https://github.com/Belval/pdf2image)
 
 ```
 pdf-image.py [-h] [--group] source
