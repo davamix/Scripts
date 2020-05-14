@@ -68,9 +68,9 @@ if(args.docker):
     # docker-compose
     compose_content = ''.join(('version: "3.7"\n\n',
                             'services:\n',
-                            f'\t{args.name.lower()}:\n',
-                            '\t\tbuild: ./app\n',
-                            f'\t\timage: {args.name.lower()}:1.0\n'))
+                            f'    {args.name.lower()}:\n',
+                            '        build: ./app\n',
+                            f'        image: {args.name.lower()}:1.0\n'))
 
     write_file(Path(app_path, "docker-compose.yaml"), compose_content)
 
